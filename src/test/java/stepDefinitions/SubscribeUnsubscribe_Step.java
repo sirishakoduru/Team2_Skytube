@@ -31,7 +31,7 @@ public class SubscribeUnsubscribe_Step {
 	@Then("Then User should see {string} message")
 	public void then_user_should_see_message(String string) {
 		
-	    String Actual = SubscribeUnsubscribepage.getSubscribedAlert();
+	    String Actual = SubscribeUnsubscribepage.getToastMessageSubscribe();
 		Assert.assertEquals(string,Actual);
 	    
 	}
@@ -39,41 +39,46 @@ public class SubscribeUnsubscribe_Step {
 
 	@When("User clicks on the hamburger menu on the top left corner and navigates to subscribed channel tab")
 	public void user_clicks_on_the_hamburger_menu_on_the_top_left_corner_and_navigates_to_subscribed_channel_tab() {
-	    
+//		SubscribeUnsubscribepage.clickChannelName();
+		SubscribeUnsubscribepage.clickMenuIcon();
 	}
 
 	@Then("User should see the subscribed channel")
 	public void user_should_see_the_subscribed_channel() {
 	    
+		Assert.assertTrue(SubscribeUnsubscribepage.issubscribedChannelDisplayed());
 	    
 	}
 
 	@When("User clicks on the hamburger menu on the top left corner and selectes the subscribed channel in the subscriptions tab")
 	public void user_clicks_on_the_hamburger_menu_on_the_top_left_corner_and_selectes_the_subscribed_channel_in_the_subscriptions_tab() {
-	    
+		SubscribeUnsubscribepage.clickMenuIcon();
+		SubscribeUnsubscribepage.selectSubscribedChannel();
 	}
 
 	@Then("User shouls see the unsubscribe button")
 	public void user_shouls_see_the_unsubscribe_button() {
-	    
+		Assert.assertTrue(SubscribeUnsubscribepage.isUnsubscribeButtonDisplayed());
 	    
 	}
 
 	@Given("User is on the subscribed channel")
 	public void user_is_on_the_subscribed_channel() {
-	    
+		SubscribeUnsubscribepage.clickMenuIcon();
+		SubscribeUnsubscribepage.selectSubscribedChannel();
 	    
 	}
 
 	@When("User clicks on the unsubscribe button")
 	public void user_clicks_on_the_unsubscribe_button() {
-	    
+		SubscribeUnsubscribepage.clickunsubscribeButton();
 	    
 	}
 
 	@Then("User should see the message {string}")
 	public void user_should_see_the_message(String string) {
-	    
+	    String Actual = SubscribeUnsubscribepage.getToastMessageUnSubscribe();
+		Assert.assertEquals(string,Actual);  
 	    
 	}
 
