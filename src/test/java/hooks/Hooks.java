@@ -12,6 +12,7 @@ import java.nio.file.StandardCopyOption;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.cucumber.java.After;
@@ -66,5 +67,10 @@ public class Hooks {
 		 if (driver != null) {
 		        driver.quit();
 		    }
+	
+	}
+	public static AndroidDriver getDriver() {
+		// TODO Auto-generated method stub
+		return driver;
 	}
 }
