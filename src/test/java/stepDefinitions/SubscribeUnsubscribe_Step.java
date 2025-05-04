@@ -1,8 +1,11 @@
 package stepDefinitions;
 
 
+import static org.testng.Assert.assertEquals;
+
 import org.testng.Assert;
 
+import hooks.DriverManager;
 import hooks.Hooks;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
@@ -12,13 +15,13 @@ import pageObjects.SubscribeUnsubscribe;
 
 public class SubscribeUnsubscribe_Step {
 	
-	AndroidDriver driver = Hooks.getDriver();
+	AndroidDriver driver = DriverManager.getDriver();
 	SubscribeUnsubscribe SubscribeUnsubscribepage = new SubscribeUnsubscribe(driver);
 	
 	@Given("User is on the skytube home page")
 	public void user_is_on_the_skytube_home_page() {
-	    
-		SubscribeUnsubscribepage.clickOkButton();
+	    System.out.println("user is in home page");
+//		SubscribeUnsubscribepage.clickOkButton();
 	}
 
 	@When("User selects the vedio to be played and clicks on the options of the vedio to subscribe")
@@ -45,38 +48,46 @@ public class SubscribeUnsubscribe_Step {
 
 	@Then("User should see the subscribed channel")
 	public void user_should_see_the_subscribed_channel() {
-	    
-		Assert.assertTrue(SubscribeUnsubscribepage.issubscribedChannelDisplayed());
+		String expChannelName = SubscribeUnsubscribepage.CheckSubscribedChannel(SubscribeUnsubscribepage.getChannelName());
+	    String actSubscribedChannelName = SubscribeUnsubscribepage.CheckSubscribedChannel(SubscribeUnsubscribepage.getSubscribedChannel());
+	    assertEquals(actSubscribedChannelName, expChannelName);
+//		Assert.assertTrue(SubscribeUnsubscribepage.issubscribedChannelDisplayed());
 	    
 	}
 
 	@When("User clicks on the hamburger menu on the top left corner and selectes the subscribed channel in the subscriptions tab")
 	public void user_clicks_on_the_hamburger_menu_on_the_top_left_corner_and_selectes_the_subscribed_channel_in_the_subscriptions_tab() {
-		SubscribeUnsubscribepage.clickMenuIcon();
-		SubscribeUnsubscribepage.selectSubscribedChannel();
+//		SubscribeUnsubscribepage.clickMenuIcon();
+//		SubscribeUnsubscribepage.selectSubscribedChannel();
 	}
 
 	@Then("User shouls see the unsubscribe button")
 	public void user_shouls_see_the_unsubscribe_button() {
+//		SubscribeUnsubscribepage.clickMenuIcon();
+		SubscribeUnsubscribepage.selectSubscribedChannel();
 		Assert.assertTrue(SubscribeUnsubscribepage.isUnsubscribeButtonDisplayed());
+		
 	    
 	}
 
 	@Given("User is on the subscribed channel")
 	public void user_is_on_the_subscribed_channel() {
-		SubscribeUnsubscribepage.clickMenuIcon();
-		SubscribeUnsubscribepage.selectSubscribedChannel();
+//		driver.navigate().back();
+//		SubscribeUnsubscribepage.clickMenuIcon();
+//		SubscribeUnsubscribepage.selectSubscribedChannel();
+		System.out.println("User is on the subscribed channel");
 	    
 	}
 
 	@When("User clicks on the unsubscribe button")
 	public void user_clicks_on_the_unsubscribe_button() {
-		SubscribeUnsubscribepage.clickunsubscribeButton();
+//		SubscribeUnsubscribepage.clickunsubscribeButton();
 	    
 	}
 
 	@Then("User should see the message {string}")
 	public void user_should_see_the_message(String string) {
+//		SubscribeUnsubscribepage.clickunsubscribeButton();
 	    String Actual = SubscribeUnsubscribepage.getToastMessageUnSubscribe();
 		Assert.assertEquals(string,Actual);  
 	    

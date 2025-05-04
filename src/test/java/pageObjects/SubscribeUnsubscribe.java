@@ -99,12 +99,19 @@ public class SubscribeUnsubscribe {
 		hamburgerIcon.click();
 	}
 	
+	public String CheckSubscribedChannel(WebElement ele) {
+		 String channelName = ele.getText();
+		 return channelName;
+	}
 	public boolean issubscribedChannelDisplayed() {
 		return channelName.isDisplayed();
 	}
 	
 	public WebElement getChannelName() {
 		return channelName;
+	}
+	public WebElement getSubscribedChannel() {
+		return selectSubscribedChanel;
 	}
 	
 	public void selectSubscribedChannel() {
@@ -126,7 +133,7 @@ public class SubscribeUnsubscribe {
 	public String getToastMessageUnSubscribe() {
 		unsubscribeButton.click();
 
-		By toastLocator = By.xpath("//android.widget.Toast[2]");
+		By toastLocator = By.xpath("//android.widget.Toast[1]");
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         String toastMessage = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator)).getText();
