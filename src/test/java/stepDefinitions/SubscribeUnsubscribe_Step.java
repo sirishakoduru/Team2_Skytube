@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.testng.Assert;
 
-import hooks.DriverManager;
+import driverManager.DriverManager;
 import hooks.Hooks;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
@@ -15,8 +15,13 @@ import pageObjects.SubscribeUnsubscribe;
 
 public class SubscribeUnsubscribe_Step {
 	
-	AndroidDriver driver = DriverManager.getDriver();
-	SubscribeUnsubscribe SubscribeUnsubscribepage = new SubscribeUnsubscribe(driver);
+	private AndroidDriver driver;
+    private SubscribeUnsubscribe SubscribeUnsubscribepage;
+    
+	   public SubscribeUnsubscribe_Step() {
+	        driver = DriverManager.getDriver();  // Retrieve the driver from DriverManager
+	        SubscribeUnsubscribepage = new SubscribeUnsubscribe(driver);  // Initialize page object
+	    }
 	
 	@Given("User is on the skytube home page")
 	public void user_is_on_the_skytube_home_page() {
@@ -57,7 +62,7 @@ public class SubscribeUnsubscribe_Step {
 
 	@When("User clicks on the hamburger menu on the top left corner and selectes the subscribed channel in the subscriptions tab")
 	public void user_clicks_on_the_hamburger_menu_on_the_top_left_corner_and_selectes_the_subscribed_channel_in_the_subscriptions_tab() {
-//		SubscribeUnsubscribepage.clickMenuIcon();
+		SubscribeUnsubscribepage.clickMenuIcon();
 //		SubscribeUnsubscribepage.selectSubscribedChannel();
 	}
 
@@ -73,8 +78,8 @@ public class SubscribeUnsubscribe_Step {
 	@Given("User is on the subscribed channel")
 	public void user_is_on_the_subscribed_channel() {
 //		driver.navigate().back();
-//		SubscribeUnsubscribepage.clickMenuIcon();
-//		SubscribeUnsubscribepage.selectSubscribedChannel();
+		SubscribeUnsubscribepage.clickMenuIcon();
+		SubscribeUnsubscribepage.selectSubscribedChannel();
 		System.out.println("User is on the subscribed channel");
 	    
 	}
