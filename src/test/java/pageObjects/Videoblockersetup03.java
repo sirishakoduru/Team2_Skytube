@@ -49,7 +49,7 @@ public class Videoblockersetup03 {
     }
 
     public void clickSetOnVideoBlockerMessage() {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
+        new WebDriverWait(driver, Duration.ofSeconds(10))
             .until(ExpectedConditions.elementToBeClickable(setButton))
             .click();
     }

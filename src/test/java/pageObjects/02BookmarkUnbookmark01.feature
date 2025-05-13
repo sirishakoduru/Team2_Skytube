@@ -1,5 +1,5 @@
 
-
+@BookmarkModule
 Feature: Bookmark feature in the skyTube Application
 
 Background: User launches the Skytube Application
