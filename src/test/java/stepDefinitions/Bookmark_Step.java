@@ -26,6 +26,8 @@ public class Bookmark_Step {
 	public void user_is_on_the_home_page_of_sky_tube_application() {
 		
 		bm = new Bookmark01(driver);
+		//driver.navigate().back();
+		//driver.navigate().back();
 		bm.dismissStartupPopupIfPresent(); 
 		
 	    

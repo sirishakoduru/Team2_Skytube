@@ -1,3 +1,5 @@
+
+@VideoblockersetupModule
 Feature: Video Blocker set up feature in the skyTube Application
 
 Background: User launches the Skytube Application

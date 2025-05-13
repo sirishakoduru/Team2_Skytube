@@ -66,7 +66,7 @@ AndroidDriver driver;
 	
 	public void videoCleaneroption_click() {
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(videocleaneroption));
 		videocleaneroption.click();
 	}

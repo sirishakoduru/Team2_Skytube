@@ -1,3 +1,5 @@
+
+@WatchvideocleanerModule
 Feature: Watchvideocleanner feature in the skyTube Application
 
 Background: User launches the Skytube Application

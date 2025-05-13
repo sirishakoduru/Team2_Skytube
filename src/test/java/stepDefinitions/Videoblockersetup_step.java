@@ -48,7 +48,7 @@ public class Videoblockersetup_step {
 
 	@When("User clicks set option of video blocker")
 	public void user_clicks_set_option_of_video_blocker() {
-	   
+		 vb.clickHamburgerMenu();
 		 vb.clickSetOnVideoBlockerMessage();
 		
 	}

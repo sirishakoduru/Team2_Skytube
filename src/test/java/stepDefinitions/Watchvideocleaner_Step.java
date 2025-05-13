@@ -22,6 +22,7 @@ public class Watchvideocleaner_Step {
 	public void user_sees_sky_tube_homepage() {
 	   
 		vc = new Watchvideocleaner04(driver);
+		//driver.navigate().back();
 		
 	}
 
@@ -52,6 +53,7 @@ public class Watchvideocleaner_Step {
 	public void user_clicks_watched_video_cleaner_option() {
 	   
 		vc = new Watchvideocleaner04(driver);
+		vc.moreoption_click();
 		vc.videoCleaneroption_click();
 		
 	}
@@ -68,6 +70,8 @@ public class Watchvideocleaner_Step {
 	public void user_is_able_to_see_watched_video_cleaner_message_box() {
 	    
 		vc = new Watchvideocleaner04(driver);
+		vc.moreoption_click();
+		vc.videoCleaneroption_click();
 		
 		vc.videoCleanerMessageboxIsVisible();
 		
