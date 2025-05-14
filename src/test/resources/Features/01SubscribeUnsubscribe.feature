@@ -1,3 +1,5 @@
+
+@SubscribeUnsubscribeModule
 Feature: Subscribe and unsubscribe a channel in skytube application
 
 Scenario: Verify user is navigated to the required channel

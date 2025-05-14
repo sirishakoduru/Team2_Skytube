@@ -14,7 +14,7 @@ import io.cucumber.junit.CucumberOptions;
 glue= {"stepDefinitions","hooks"},
 plugin={"pretty","html:target/CucumberReports/CucumberReport.html",
 		"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
+		"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"}
 //dryRun=true // checks mapping between scenario steps and step definition methods
 
 		)

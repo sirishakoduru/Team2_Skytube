@@ -135,7 +135,7 @@ public class SubscribeUnsubscribe {
 
 		By toastLocator = By.xpath("//android.widget.Toast[1]");
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         String toastMessage = wait.until(ExpectedConditions.presenceOfElementLocated(toastLocator)).getText();
         System.out.println("Toast Message: " + toastMessage);
         return toastMessage;

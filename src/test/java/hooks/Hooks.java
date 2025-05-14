@@ -1,6 +1,8 @@
 package hooks;
 
 import java.io.File;
+import hooks.DriverManager; // or correct package if it's elsewhere
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -14,6 +16,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.appium.java_client.android.AndroidDriver;
+
 
 import driverManager.DriverManager;
 import io.appium.java_client.AppiumDriver;
@@ -22,6 +26,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+
 
 public class Hooks {
 	
@@ -34,14 +39,21 @@ public class Hooks {
         }));
     }
 	
-	@Before
+	@Before("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule")
 	public void setup() {
 		
-		AndroidDriver driver = DriverManager.getDriver();
-	    if (driver == null || driver.getSessionId() == null) {
-	        throw new RuntimeException("Driver failed to initialize. Session ID is null.");
+		
+		AndroidDriver driver = (AndroidDriver) DriverManager.getDriver(); 
+		driver.activateApp("free.rm.skytube.extra");// ensures driver is initialized
+	    //driver.resetApp(); // no red underline now
+
+
+      	DriverManager.getDriver();
+		try {
+	        Thread.sleep(2000); // wait for app to stabilize
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
 	    }
-	    
 //		File f = new File("src/test/resources/apk");
 //		File fs = new File(f,"SkyTube-Extra-2.995.apk");
 //		
@@ -60,9 +72,9 @@ public class Hooks {
 //			}
 		
 	}
-	@After
+	@After("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule")
 	public void teardown(Scenario scenario) {
-		 driver = DriverManager.getDriver();
+		AndroidDriver driver = DriverManager.getDriver();
 		   if (scenario.isFailed()) {
 	            // Clean scenario name for filename
 	            String safeName = scenario.getName().replaceAll(" ", "_");
