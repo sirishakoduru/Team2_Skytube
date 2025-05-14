@@ -3,7 +3,7 @@ package stepDefinitions;
 import org.testng.Assert;
 
 
-import hooks.DriverManager;
+import driverManager.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

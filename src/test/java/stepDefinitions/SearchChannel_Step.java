@@ -5,7 +5,7 @@ import static org.testng.Assert.assertEquals;
 
 import org.testng.Assert;
 
-import hooks.DriverManager;
+import driverManager.DriverManager;
 import hooks.Hooks;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
@@ -25,7 +25,7 @@ public class SearchChannel_Step {
 	}
 
 	@When("The User Click on the hamburger menu on left side of home page")
-	public void the_user_click_on_the_hamburger_menu_on_left_side_of_home_page() {
+	public void the_user_click_on_the_hamburger_menu_on_left_side_of_home_page() throws InterruptedException {
 		SearchChannelPage.clickHamburgermenu();
 	}
 
@@ -43,7 +43,7 @@ public class SearchChannel_Step {
 	}
 
 	@When("The User type the valid subscribed channel {string} in the search tab")
-	public void the_user_type_the_valid_subscribed_channel_in_the_search_tab(String string) {
+	public void the_user_type_the_valid_subscribed_channel_in_the_search_tab(String string) throws InterruptedException {
 		SearchChannelPage.subscribeChannel();
 		SearchChannelPage.clickHamburgermenu();
 		SearchChannelPage.TypesearchChannel();
@@ -57,7 +57,7 @@ public class SearchChannel_Step {
 	}
 
 	@When("The User type the non subscribed channel {string} in the search tab")
-	public void the_user_type_the_non_subscribed_channel_in_the_search_tab(String string) {
+	public void the_user_type_the_non_subscribed_channel_in_the_search_tab(String string) throws InterruptedException {
 		SearchChannelPage.clickHamburgermenu();
 		SearchChannelPage.TypesearchChannelNonsubscribe();
 	}
@@ -68,7 +68,7 @@ public class SearchChannel_Step {
 	}
 
 	@When("The User type the special character {string} in the search tab")
-	public void the_user_type_the_special_character_in_the_search_tab(String string) {
+	public void the_user_type_the_special_character_in_the_search_tab(String string) throws InterruptedException {
 		SearchChannelPage.clickHamburgermenu();
 		SearchChannelPage.TypesearchChannelSplchar();
 	    

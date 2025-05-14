@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import hooks.DriverManager;
+import driverManager.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
 import pageObjects.Videoblockersetup03;

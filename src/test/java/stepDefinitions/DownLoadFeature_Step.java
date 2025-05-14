@@ -1,13 +1,13 @@
 package stepDefinitions;
 
-import hooks.DriverManager;
+import driverManager.DriverManager;
 
 import static org.testng.Assert.assertEquals;
 
 
 import org.testng.Assert;
 
-import hooks.DriverManager;
+
 import hooks.Hooks;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
@@ -15,7 +15,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.DownLoadFeature;
 
-
+import driverManager.DriverManager;
 public class DownLoadFeature_Step {
 	
 	AndroidDriver driver = DriverManager.getDriver();

@@ -74,7 +74,8 @@ public class SearchChannel {
     
         
 
-public void clickHamburgermenu() {
+public void clickHamburgermenu() throws InterruptedException {
+	Thread.sleep(2000);
 	HamBurgerMenu.click();
 }
 
