@@ -4,16 +4,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.Assert;
 
 import driverManager.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.*;
 import pageObjects.Videoblockersetup03;
-import utilities.DriverProvider;
+//import utilities.DriverProvider;
 
-@ExtendWith(DriverProvider.class)
+//@ExtendWith(DriverProvider.class)
 public class Videoblockersetup_step {
 	
 	AndroidDriver driver = DriverManager.getDriver();

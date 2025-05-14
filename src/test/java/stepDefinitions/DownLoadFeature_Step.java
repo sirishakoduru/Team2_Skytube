@@ -1,15 +1,15 @@
 package stepDefinitions;
 
 import driverManager.DriverManager;
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.DownLoadFeature;
-import utilities.DriverProvider;
+//import utilities.DriverProvider;
 
-@ExtendWith(DriverProvider.class)
+//@ExtendWith(DriverProvider.class)
 public class DownLoadFeature_Step {
 	
 	AndroidDriver driver = DriverManager.getDriver();
