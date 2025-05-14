@@ -34,7 +34,7 @@ public class DownLoadFeature {
 	WebElement DwonloadPagebtn;	
 	@AndroidFindBy (id = "com.android.permissioncontroller:id/permission_allow_button")
 	WebElement PermissionAllowBtn;
-	@AndroidFindBy (id = "free.rm.skytube.extra:id/options_button")
+	@AndroidFindBy (xpath = "//android.widget.ImageButton[@resource-id=\"free.rm.skytube.extra:id/options_button\"]")
 	WebElement ThreedotinDownloadPage;
 	@AndroidFindBy (id = "//android.widget.TextView[@text=\"DOWNLOADS\"]")
 	WebElement videoTitle;
@@ -100,6 +100,8 @@ public class DownLoadFeature {
 		    
 	}
 	 public void ClickonOption() {
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	        wait.until(ExpectedConditions.visibilityOf(ThreedotinDownloadPage));
 		 ThreedotinDownloadPage.click();
 	} 
 	 public boolean isDeleteoptionVisible() {

@@ -1,3 +1,4 @@
+@DownloadModule
 Feature: DownLoad functionality in SkyTube app
 
 Scenario: Verify the user can see the downloaded videos in download menu

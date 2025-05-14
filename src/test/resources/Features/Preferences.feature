@@ -1,3 +1,4 @@
+@PreferencesModule
 Feature: Check checks all the preferences menu options
 
 Scenario: Verify user is able to naviage to preferences tab

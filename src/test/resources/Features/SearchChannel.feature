@@ -1,3 +1,4 @@
+@SearchChannelModule
 Feature: Search Channel functionality in SkyTube app
 
   Scenario: Verify the user able to search channel in skytube application

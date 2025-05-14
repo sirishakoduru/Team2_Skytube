@@ -38,7 +38,8 @@ public class Hooks {
         }));
     }
 	
-	@Before("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule")
+	@Before("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule or @PreferencesModule or @DownloadModule or "
+			+ "@SearchChannelModule ")
 	public void setup() {
 		
 		
@@ -53,25 +54,10 @@ public class Hooks {
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }
-//		File f = new File("src/test/resources/apk");
-//		File fs = new File(f,"SkyTube-Extra-2.995.apk");
-//		
-//		UiAutomator2Options options = new UiAutomator2Options()
-//				.setAppWaitActivity("*")
-//			    .setUdid("emulator-5554")
-//			    .setApp(fs.getAbsolutePath());
-//		
-//
-//			try {
-//				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); 
-//				driver = new AndroidDriver(new URI("http://127.0.0.1:4723/").toURL(), options);
-//			} catch (MalformedURLException | URISyntaxException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-		
+
 	}
-	@After("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule")
+	@After("@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule or @PreferencesModule or @DownloadModule or "
+			+ "@SearchChannelModule ")
 	public void teardown(Scenario scenario) {
 		AndroidDriver driver = DriverManager.getDriver();
 		   if (scenario.isFailed()) {
@@ -95,7 +81,7 @@ public class Hooks {
 	        }
 		 if (driver != null) {
 		        driver.terminateApp("free.rm.skytube.extra");
-//		        driver.quit();
+		       // driver.quit();
 			 
 		    }
 	

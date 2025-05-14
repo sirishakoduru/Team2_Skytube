@@ -91,7 +91,7 @@ public boolean Searchchannel() {
     }
 }
 public void TypesearchChannel() {
-	SearchOption.sendKeys("Korporate");
+	SearchOption.sendKeys("Red");
 }
 
 public void TypesearchChannelNonsubscribe() {
@@ -107,7 +107,7 @@ public void TypesearchChannelSplchar() {
 public void TypeonSearchBar() {	
 	
 	SearchIcon.click();
-	SearchTab.sendKeys("Korporate");
+	SearchTab.sendKeys("Red");
 	try {
         ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
     } catch (Exception e) {
