@@ -12,9 +12,10 @@
 				<configuration>
 <!--   Change this to your actual runner class if named differently   -->
 <includes>
-<include>**/TestRunner.java</include>
-</includes>
-<useSystemClassLoader>true</useSystemClassLoader>
+      <include>**/TestRunner.class</include>
+    </includes>
+    <test>runner.TestRunner</test>
+    <useSystemClassLoader>true</useSystemClassLoader>
 </configuration>
 			</plugin>
 
