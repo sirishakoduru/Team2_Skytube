@@ -2,7 +2,7 @@ package stepDefinitions;
 
 import static org.testng.Assert.assertEquals;
 
-
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.Assert;
 
 import driverManager.DriverManager;
@@ -12,8 +12,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.SearchChannel;
+import utilities.DriverProvider;
 
-
+@ExtendWith(DriverProvider.class)
 public class SearchChannel_Step {
 	
 	AndroidDriver driver = DriverManager.getDriver();
@@ -38,7 +39,7 @@ public class SearchChannel_Step {
 	public void the_user_is_on_the_subscription_page_with_search_channel_options() {
 		System.out.println("The User is on the subscription page with search channel options"); 
 		//SearchChannelPage.TypeonSearchBar();
-		driver.navigate().back();
+		//driver.navigate().back();
 		//SearchChannelPage.subscribeChannel();
 	}
 

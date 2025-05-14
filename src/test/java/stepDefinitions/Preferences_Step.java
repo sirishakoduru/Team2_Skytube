@@ -41,7 +41,8 @@ public class Preferences_Step {
 
 	@Then("User should see the menu options {string}.")
 	public void user_should_see_the_menu_options(String MenuOptions) {
-		
+		Preferences.clickMoreOptions();
+		Preferences.clickPreferences();
 		boolean isDisplayed = Preferences.isMenuOptionsDisplayed(MenuOptions);
 	   assert isDisplayed : "Menu option '" + MenuOptions + "' is not displayed!";;
 	}

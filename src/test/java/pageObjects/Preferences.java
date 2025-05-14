@@ -68,18 +68,33 @@ AndroidDriver driver;
 		return preferencesTab.isDisplayed();
 	}
 	
+//	public boolean isMenuOptionsDisplayed(String optionsText) {
+//		try {
+//			
+//			WebElement Options = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/title' and @text='\" + optionsText + \"']"));
+//			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//	        wait.until(ExpectedConditions.visibilityOf(Options));
+//			return Options.isDisplayed();
+//		} catch
+//			(Exception e) {
+//	            return false;
+//		}
 	public boolean isMenuOptionsDisplayed(String optionsText) {
-		try {
-			WebElement Options = driver.findElement(By.xpath("//android.widget.TextView[@resource-id='android:id/title' and @text='\" + optionsText + \"']"));
-			return Options.isDisplayed();
-		} catch
-			(Exception e) {
-	            return false;
-		}
+	    try {
+	        String preferenceOptions = "//android.widget.TextView[@resource-id='android:id/title' and @text='" + optionsText + "']";
+	        WebElement option = driver.findElement(By.xpath(preferenceOptions));
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        wait.until(ExpectedConditions.visibilityOf(option));
+	        return option.isDisplayed();
+	    } catch (Exception e) {
+	        return false;
+	    }
+	}
+
 	}
 	
 	
 
 	
 
-}
+

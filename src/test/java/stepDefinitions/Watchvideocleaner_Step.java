@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.Assert;
 
 
@@ -10,8 +11,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.Bookmark01;
 import pageObjects.Watchvideocleaner04;
+import utilities.DriverProvider;
 import pageObjects.Bookmark01;
 
+@ExtendWith(DriverProvider.class)
 public class Watchvideocleaner_Step {
 	
 	AndroidDriver driver =  DriverManager.getDriver();
