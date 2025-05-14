@@ -68,7 +68,7 @@ public class SubscribeUnsubscribe_Step {
 
 	@Then("User shouls see the unsubscribe button")
 	public void user_shouls_see_the_unsubscribe_button() {
-		SubscribeUnsubscribepage.clickMenuIcon();
+		//SubscribeUnsubscribepage.clickMenuIcon();
 		SubscribeUnsubscribepage.selectSubscribedChannel();
 		Assert.assertTrue(SubscribeUnsubscribepage.isUnsubscribeButtonDisplayed());
 		

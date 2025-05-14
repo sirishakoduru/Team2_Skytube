@@ -46,9 +46,11 @@ public class DownLoadFeature {
 	WebElement noDownloadedVideoMessage;
 	
 	public void VideoDownload() throws InterruptedException {
-		 Threedots.click();
+		Thread.sleep(2000); 
+		Threedots.click();
+		
 		 downloadBtn.click();
-		 Thread.sleep(2000);
+		 
 		 
 //		 if (PermissionAllowBtn.isDisplayed()) {
 //			    PermissionAllowBtn.click();
