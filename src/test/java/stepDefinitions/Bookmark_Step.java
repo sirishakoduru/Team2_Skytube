@@ -5,14 +5,13 @@ import org.testng.Assert;
 //import com.aventstack.extentreports.ExtentTest;
 
 //import Reports.BaseTest;
-import hooks.DriverManager;
+import driverManager.DriverManager;
 import hooks.Hooks;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.Bookmark01;
-
 
 public class Bookmark_Step {
 	
