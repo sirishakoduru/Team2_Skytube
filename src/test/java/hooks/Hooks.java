@@ -1,7 +1,6 @@
 package hooks;
 
 import java.io.File;
-import hooks.DriverManager; // or correct package if it's elsewhere
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.android.AndroidDriver;
 
 
+import driverManager.DriverManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -42,12 +42,12 @@ public class Hooks {
 	public void setup() {
 		
 		
-		 AndroidDriver driver = (AndroidDriver) DriverManager.getDriver(); 
-		 driver.activateApp("free.rm.skytube.extra");// ensures driver is initialized
+		AndroidDriver driver = (AndroidDriver) DriverManager.getDriver(); 
+		driver.activateApp("free.rm.skytube.extra");// ensures driver is initialized
 	    //driver.resetApp(); // no red underline now
 
 
-       DriverManager.getDriver();
+      	DriverManager.getDriver();
 		try {
 	        Thread.sleep(2000); // wait for app to stabilize
 	    } catch (InterruptedException e) {
@@ -93,18 +93,13 @@ public class Hooks {
 	                e.printStackTrace();
 	            }
 	        }
-		   
-		  // DriverManager.quitDriver();
 		 if (driver != null) {
-			    driver.terminateApp("free.rm.skytube.extra");
-		        //driver.quit();
+		        driver.terminateApp("free.rm.skytube.extra");
+//		        driver.quit();
+			 
 		    }
 	
 	}
-	
-	
-//	public static AndroidDriver getDriver() {
-//		// TODO Auto-generated method stub
-//		return driver;
+
 //	}
 }

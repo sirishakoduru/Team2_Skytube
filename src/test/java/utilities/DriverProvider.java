@@ -21,148 +21,138 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 
+public class DriverProvider implements ParameterResolver, AfterAllCallback, TestWatcher{
 
+	AndroidDriver driver;
+    public static final Namespace NAMESPACE = Namespace.create(DriverProvider.class);
+    public static final String HTML_REPORT_DIR = System.getProperty("user.dir");
 
-	
-	public class DriverProvider implements ParameterResolver, AfterAllCallback, TestWatcher{
+    @Override
+    public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
+            throws ParameterResolutionException {
+        return parameterContext.getParameter().getType()
+                .equals(AndroidDriver.class);
+    }
 
-		AndroidDriver driver;
-	    public static final Namespace NAMESPACE = Namespace.create(DriverProvider.class);
-	    public static final String HTML_REPORT_DIR = System.getProperty("user.dir");
+    @Override
+    public AndroidDriver resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+    	 File f = new File("src/test/resources/apk");
+         File fs = new File(f, "SkyTube-Extra-2.995.apk");
+UiAutomator2Options options = new UiAutomator2Options()
+         .setAppWaitActivity("*")
+         .setUdid("emulator-5554")
+         .setApp(fs.getAbsolutePath())
+         .setNoReset(true)
+         .setFullReset(false);
 
-	    @Override
-	    public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
-	            throws ParameterResolutionException {
-	        return parameterContext.getParameter().getType()
-	                .equals(AndroidDriver.class);
-	    }
+ try {
+//             driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
+     driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
+ } catch (MalformedURLException e) {
+     e.printStackTrace();
+ }
+        return driver;
+    }
 
-	    @Override
-	    public AndroidDriver resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-	    	 File f = new File("src/test/resources/apk");
-	         File fs = new File(f, "SkyTube-Extra-2.995.apk");
-	UiAutomator2Options options = new UiAutomator2Options()
-	         .setAppWaitActivity("*")
-	         .setUdid("emulator-5554")
-	         .setApp(fs.getAbsolutePath())
-	         .setNoReset(true)
-	         .setFullReset(false);
+    public void quitDriver(AndroidDriver driver){
+        if(driver != null && driver.getSessionId() != null)
+            driver.quit();
+        driver = null;
+    }
 
-	 try {
-//	             driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
-	     driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
-	 } catch (MalformedURLException e) {
-	     e.printStackTrace();
-	 }
-	        return driver;
-	    }
+    public String getSessionId(AndroidDriver driver){
+        String sessionId;
+        try {
+            sessionId = driver.getSessionId().toString();
+        } catch (Exception e){
+            sessionId = UUID.randomUUID().toString();
+        }
+        return sessionId;
+    }
 
-	    public void quitDriver(AndroidDriver driver){
-	        if(driver != null && driver.getSessionId() != null)
-	            driver.quit();
-	        driver = null;
-	    }
+    @Override
+    public void testDisabled(ExtensionContext context, Optional<String> reason) {
+        setTestInfo(null, context.getDisplayName(), "PENDING", null);
+        quitDriver(driver);
+    }
 
-	    public String getSessionId(AndroidDriver driver){
-	        String sessionId;
-	        try {
-	            sessionId = driver.getSessionId().toString();
-	        } catch (Exception e){
-	            sessionId = UUID.randomUUID().toString();
-	        }
-	        return sessionId;
-	    }
+    @Override
+    public void testSuccessful(ExtensionContext context) {
+        setTestInfo(getSessionId(driver), context.getDisplayName(), "PASSED", null);
+        quitDriver(driver);
+    }
 
-	    @Override
-	    public void testDisabled(ExtensionContext context, Optional<String> reason) {
-	        setTestInfo(null, context.getDisplayName(), "PENDING", null);
-	        quitDriver(driver);
-	    }
+    @Override
+    public void testFailed(ExtensionContext context, Throwable cause) {
+        setTestInfo(getSessionId(driver), context.getDisplayName(), "FAILED", cause.toString().replace("\n", "\\n"));
+        quitDriver(driver);
+    }
 
-	    @Override
-	    public void testSuccessful(ExtensionContext context) {
-	        setTestInfo(getSessionId(driver), context.getDisplayName(), "PASSED", null);
-	        quitDriver(driver);
-	    }
+    @Override
+    public void testAborted(ExtensionContext context, Throwable cause) {
+        setTestInfo(getSessionId(driver), context.getDisplayName(), "Aborted", null);
+        quitDriver(driver);
+    }
 
-	    @Override
-	    public void testFailed(ExtensionContext context, Throwable cause) {
-	        setTestInfo(getSessionId(driver), context.getDisplayName(), "FAILED", cause.toString().replace("\n", "\\n"));
-	        quitDriver(driver);
-	    }
+    public static void setSkippedTestInfo(String testName, String testStatus, String error) {
+        try {
+            String url = "http://localhost:4723/setTestInfo";
+            String body = "{" +
+                    "\"testName\":\""+testName+"\"," +
+                    "\"testStatus\":\""+testStatus+"\"," +
+                    "\"error\":\""+error+"\"" +
+                    "}";
+            System.out.println("url = " + url);
+            System.out.println("Body of setTestInfo = " + body);
+            HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.post(url)
+                    .header("Content-Type", "application/json")
+                    .body(body).asJson();
+        } catch (Exception e){
+            System.out.println("Failed to set Test info");
+        }
+    }
 
-	    @Override
-	    public void testAborted(ExtensionContext context, Throwable cause) {
-	        setTestInfo(getSessionId(driver), context.getDisplayName(), "Aborted", null);
-	        quitDriver(driver);
-	    }
+    public static void setTestInfo(String sessionId, String testName, String testStatus, String error) {
+        try {
+            String url = "http://localhost:4723/setTestInfo";
+            String body = "{" +
+                        "\"sessionId\":\""+sessionId+"\"," +
+                        "\"testName\":\""+testName+"\"," +
+                        "\"testStatus\":\""+testStatus+"\"," +
+                        "\"error\":\""+error+"\"" +
+                        "}";
+            System.out.println("url = " + url);
+            System.out.println("Body of setTestInfo = " + body);
+            HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.post(url)
+                    .header("Content-Type", "application/json")
+                    .body(body).asJson();
+        } catch (Exception e){
+            System.out.println("Failed to set Test info");
+        }
 
-	    public static void setSkippedTestInfo(String testName, String testStatus, String error) {
-	        try {
-	            String url = "http://localhost:4723/setTestInfo";
-	            String body = "{" +
-	                    "\"testName\":\""+testName+"\"," +
-	                    "\"testStatus\":\""+testStatus+"\"," +
-	                    "\"error\":\""+error+"\"" +
-	                    "}";
-	            System.out.println("url = " + url);
-	            System.out.println("Body of setTestInfo = " + body);
-	            HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.post(url)
-	                    .header("Content-Type", "application/json")
-	                    .body(body).asJson();
-	        } catch (Exception e){
-	            System.out.println("Failed to set Test info");
-	        }
-	    }
+    }
 
-	    public static void setTestInfo(String sessionId, String testName, String testStatus, String error) {
-	        try {
-	            String url = "http://localhost:4723/setTestInfo";
-	            String body = "{" +
-	                        "\"sessionId\":\""+sessionId+"\"," +
-	                        "\"testName\":\""+testName+"\"," +
-	                        "\"testStatus\":\""+testStatus+"\"," +
-	                        "\"error\":\""+error+"\"" +
-	                        "}";
-	            System.out.println("url = " + url);
-	            System.out.println("Body of setTestInfo = " + body);
-	            HttpResponse<JsonNode> jsonNodeHttpResponse = Unirest.post(url)
-	                    .header("Content-Type", "application/json")
-	                    .body(body).asJson();
-	        } catch (Exception e){
-	            System.out.println("Failed to set Test info");
-	        }
+    public String getReport() throws IOException, InterruptedException {
+        String url = "http://localhost:4723/getReport";
+        String s = Unirest.get(url).asString().getBody();
+        return s;
+    }
 
-	    }
+    public void deleteReportData() throws IOException, InterruptedException {
+        String url = "http://localhost:4723/deleteReportData";
+         Unirest.delete(url).asEmpty();
+    }
 
-	    public String getReport() throws IOException, InterruptedException {
-	        String url = "http://localhost:4723/getReport";
-	        String s = Unirest.get(url).asString().getBody();
-	        return s;
-	    }
+    public void createReportFile(String data, String fileName) throws IOException {
+        FileWriter fileWriter = new FileWriter(HTML_REPORT_DIR + "/" + fileName + ".html");
+        fileWriter.write(data);
+        fileWriter.close();
+    }
 
-	    public void deleteReportData() throws IOException, InterruptedException {
-	        String url = "http://localhost:4723/deleteReportData";
-	         Unirest.delete(url).asEmpty();
-	    }
-
-	    public void createReportFile(String data, String fileName) throws IOException {
-	        FileWriter fileWriter = new FileWriter(HTML_REPORT_DIR + "/" + fileName + ".html");
-	        fileWriter.write(data);
-	        fileWriter.close();
-	    }
-
-	    @Override
-	    public void afterAll(ExtensionContext extensionContext) throws Exception {
-	        String report = getReport();
-	        deleteReportData();
-	        createReportFile(report, "report");
-
-	    }
-	}
-
-	
-	
-	
-	
-
+    @Override
+    public void afterAll(ExtensionContext extensionContext) throws Exception {
+        String report = getReport();
+        deleteReportData();
+        createReportFile(report, "report");
+    }
+}

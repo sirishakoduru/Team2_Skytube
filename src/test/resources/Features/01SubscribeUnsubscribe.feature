@@ -11,7 +11,7 @@ Scenario: Verify the subscribed channel displayed in the subscription page
 Given User is on the skytube home page
 When User clicks on the hamburger menu on the top left corner and navigates to subscribed channel tab
 Then User should see the subscribed channel 
-#
+
 Scenario: Verify user is able to see unsubscribe 
 Given User is on the skytube home page
 When User clicks on the hamburger menu on the top left corner and selectes the subscribed channel in the subscriptions tab
