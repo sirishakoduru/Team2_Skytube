@@ -1,17 +1,17 @@
 package stepDefinitions;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 
 import driverManager.DriverManager;
-import utilities.DriverProvider;
+//import utilities.DriverProvider;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import pageObjects.Preferences;
 import io.cucumber.java.en.Then;
 
-@ExtendWith(DriverProvider.class)
+//@ExtendWith(DriverProvider.class)
 public class Preferences_Step {
 	
 	AndroidDriver driver = DriverManager.getDriver();

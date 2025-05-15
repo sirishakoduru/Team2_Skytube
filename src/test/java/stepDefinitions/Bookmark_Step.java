@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.Assert;
 
 //import com.aventstack.extentreports.ExtentTest;
@@ -13,9 +13,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.Bookmark01;
-import utilities.DriverProvider;
+//import utilities.DriverProvider;
 
-@ExtendWith(DriverProvider.class)
+//@ExtendWith(DriverProvider.class)
 public class Bookmark_Step {
 	
 	AndroidDriver driver =  DriverManager.getDriver();

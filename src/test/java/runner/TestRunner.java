@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 
 
 @CucumberOptions(features={"src/test/resources/Features/"},
-//tags = "",
+tags = "@BookmarkModule or @VideoblockersetupModule or @WatchvideocleanerModule or @SubscribeUnsubscribeModule or @PreferencesModule or @DownloadModule or @SearchChannelModule ",
 
 glue= {"stepDefinitions","hooks"},
 plugin={"pretty","html:target/CucumberReports/CucumberReport.html",

@@ -2,7 +2,7 @@ package stepDefinitions;
 
 import static org.testng.Assert.assertEquals;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+//import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.Assert;
 
 import driverManager.DriverManager;
@@ -12,9 +12,9 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.SearchChannel;
-import utilities.DriverProvider;
+//import utilities.DriverProvider;
 
-@ExtendWith(DriverProvider.class)
+//@ExtendWith(DriverProvider.class)
 public class SearchChannel_Step {
 	
 	AndroidDriver driver = DriverManager.getDriver();

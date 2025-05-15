@@ -84,12 +84,12 @@
 		<version>5.13.0</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
-	<dependency>
+	<!--<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter</artifactId>
 		<version>5.12.2</version>
 		<scope>test</scope>
-	</dependency>
+	</dependency>*/ -->
 	<!-- https://mvnrepository.com/artifact/com.konghq/unirest-java -->
 	<dependency>
 		<groupId>com.konghq</groupId>
@@ -97,12 +97,12 @@
 		<version>3.14.5</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-	<dependency>
+	<!--<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-api</artifactId>
 		<version>5.12.2</version>
 		<scope>test</scope>
-	</dependency>
+	</dependency> -->
 	<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 	<dependency>
 		<groupId>com.aventstack</groupId>
